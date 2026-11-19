@@ -7,6 +7,8 @@ Everything runs locally with an open embedding model: no API keys, and your data
 leaves your machine. The output is a single JSON file plus a static web page you can host
 anywhere (GitHub Pages works).
 
+**[▶ Live demo](https://sidbhaumik.github.io/reading-atlas/)** (built from public Wikipedia sample data)
+
 <!-- TODO: add a screenshot / GIF of the live demo here -->
 
 ## How it works

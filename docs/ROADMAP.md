@@ -8,7 +8,7 @@
 - [x] Public demo dataset built from Wikipedia
 
 ## v0.2: publish the demo
-- [ ] GitHub Pages deploy workflow for `web/`
+- [x] GitHub Pages deploy workflow for `web/`
 - [ ] Screenshot / GIF in the README
 - [ ] `--fetch` with concurrency + per-domain politeness + on-disk page cache
 
