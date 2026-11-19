@@ -9,7 +9,9 @@
 
 ## v0.2: publish the demo
 - [x] GitHub Pages deploy workflow for `web/`
-- [ ] Screenshot / GIF in the README
+- [x] Screenshot in the README
+- [x] Shareable deep links to an item (`#p=<id>`)
+- [ ] Animated GIF walkthrough
 - [ ] `--fetch` with concurrency + per-domain politeness + on-disk page cache
 
 ## v0.3: richer meaning

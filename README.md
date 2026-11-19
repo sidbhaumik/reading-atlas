@@ -9,7 +9,7 @@ anywhere (GitHub Pages works).
 
 **[▶ Live demo](https://sidbhaumik.github.io/reading-atlas/)** (built from public Wikipedia sample data)
 
-<!-- TODO: add a screenshot / GIF of the live demo here -->
+[![Reading Atlas: 72 notes and bookmarks grouped into 8 topics, with the Maillard reaction note open and its closest neighbours listed](docs/img/atlas.png)](https://sidbhaumik.github.io/reading-atlas/#p=45ef3550787a)
 
 ## How it works
 
@@ -90,6 +90,14 @@ See [docs/ROADMAP.md](docs/ROADMAP.md).
 uv pip install -e ".[dev]"
 pytest
 ruff check .
+```
+
+**macOS: `ModuleNotFoundError: No module named 'reading_atlas'`.** Recent Python versions
+skip `.pth` files that carry the macOS "hidden" flag, which some setups apply inside `.venv`.
+Clear it with:
+
+```bash
+chflags nohidden .venv/lib/python3.*/site-packages/*.pth
 ```
 
 ## License

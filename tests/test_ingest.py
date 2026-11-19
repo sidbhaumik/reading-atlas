@@ -56,6 +56,8 @@ def test_notes_frontmatter_tags_links_and_skips(tmp_path: Path):
     assert "a link" in a.text and "https://x.y" not in a.text
 
     assert docs["plain.md"].title == "From Heading"
+    assert docs["plain.md"].text == "Body text."
+    assert "Ignored H1" in a.text  # H1 differs from the front-matter title, so it stays
 
 
 def test_document_ids_are_stable():

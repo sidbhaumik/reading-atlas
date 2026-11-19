@@ -34,8 +34,11 @@
   function base() {
     const { width, height } = canvas.getBoundingClientRect();
     const pad = 40;
-    const s = Math.min(width, height) - pad * 2;
-    return { s, ox: (width - s) / 2, oy: (height - s) / 2 };
+    // On wide screens, keep the map clear of the details panel when it is open.
+    const reserve = !panel.hidden && width > 900 ? panel.offsetWidth + 12 : 0;
+    const w = width - reserve;
+    const s = Math.min(w, height) - pad * 2;
+    return { s, ox: (w - s) / 2, oy: (height - s) / 2 };
   }
   function toScreen(x, y) {
     const b = base();
@@ -188,9 +191,20 @@
     detail.querySelectorAll("button[data-i]").forEach((b) =>
       b.addEventListener("click", () => select(Number(b.dataset.i))));
     panel.hidden = false;
+    history.replaceState(null, "", "#p=" + p.id);  // shareable link to this item
     draw();
   }
-  function closePanel() { selected = -1; panel.hidden = true; draw(); }
+  function closePanel() {
+    selected = -1;
+    panel.hidden = true;
+    history.replaceState(null, "", location.pathname + location.search);
+    draw();
+  }
+  function selectFromHash() {
+    const id = new URLSearchParams(location.hash.slice(1)).get("p");
+    const i = id ? atlas.points.findIndex((p) => p.id === id) : -1;
+    if (i >= 0) select(i);
+  }
   document.getElementById("close").addEventListener("click", closePanel);
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") closePanel(); });
 
@@ -217,7 +231,7 @@
   matchMedia("(prefers-color-scheme: dark)").addEventListener("change", draw);
   fetch("data/atlas.json")
     .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
-    .then((data) => { atlas = data; applyFilters(); })
+    .then((data) => { atlas = data; applyFilters(); selectFromHash(); })
     .catch(() => {
       countEl.textContent = "No atlas found. Run `atlas build` to create web/data/atlas.json.";
     });

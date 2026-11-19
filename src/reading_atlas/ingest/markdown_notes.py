@@ -52,7 +52,10 @@ def load_notes(root: str | Path, max_chars: int = 4000) -> list[Document]:
             meta = _parse_frontmatter(m.group(1))
             raw = raw[m.end():]
 
-        title = meta.get("title") or ((h := _H1.search(raw)) and h.group(1).strip()) or path.stem
+        h1 = _H1.search(raw)
+        title = meta.get("title") or (h1 and h1.group(1).strip()) or path.stem
+        if h1 and h1.group(1).strip() == str(title).strip():
+            raw = raw[: h1.start()] + raw[h1.end():]  # don't repeat the title in the body
         body = _clean(raw)
         if not body:
             continue
