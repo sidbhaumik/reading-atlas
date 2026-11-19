@@ -229,7 +229,7 @@
   // ---- boot --------------------------------------------------------------
   window.addEventListener("resize", draw);
   matchMedia("(prefers-color-scheme: dark)").addEventListener("change", draw);
-  fetch("data/atlas.json")
+  fetch("data/atlas.json", { cache: "no-cache" })
     .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then((data) => { atlas = data; applyFilters(); selectFromHash(); })
     .catch(() => {
