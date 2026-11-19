@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reading Atlas</title>
+  <meta name="description" content="A semantic map of bookmarks and notes: similar ideas sit close together." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="bar">
+    <div class="brand">
+      <strong>Reading Atlas</strong>
+      <span id="count" class="muted"></span>
+    </div>
+    <input id="search" type="search" placeholder="Search titles, tags, text…" autocomplete="off" />
+    <div class="filters" role="group" aria-label="Source filter">
+      <label><input type="checkbox" value="bookmark" checked /> Bookmarks</label>
+      <label><input type="checkbox" value="note" checked /> Notes</label>
+    </div>
+  </header>
+
+  <main>
+    <canvas id="map" aria-label="Semantic map of documents"></canvas>
+    <div id="tooltip" hidden></div>
+    <aside id="panel" hidden>
+      <button id="close" aria-label="Close details">×</button>
+      <div id="detail"></div>
+    </aside>
+    <p class="hint muted">Scroll to zoom · drag to pan · click a dot for details</p>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

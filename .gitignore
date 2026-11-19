@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+dist/
+build/
+
+# Your personal data never leaves your machine
+data/private/
+*.private.*
+bookmarks*.html
+!tests/fixtures/*.html
+
+# Pipeline caches and outputs (the demo atlas in web/data is committed)
+.cache/
+out/
+
+# OS / editors
+.DS_Store
+.idea/
+.vscode/
